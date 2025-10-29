@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Listado de Alumnos - TP02 Franco Abalos</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" 
+        rel="stylesheet" 
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" 
+        crossorigin="anonymous">
+</head>
+<body class="bg-light">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="https://ifdc6m-juj.infd.edu.ar/sitio/wp-content/uploads/2020/11/Screenshot_1000.png" alt="Logo IFDC" height="60">
+      </a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="#">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Formulario</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Tabla</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contenido principal -->
+  <div class="container text-center mt-5">
+    <h1 class="display-5 fw-bold mb-4 text-secondary">Listado de Alumnos (Supabase)</h1>
+    <p class="lead mb-4">Los datos se cargan automáticamente desde la base de datos Supabase.</p>
+
+    <!-- Contenedor donde se mostrarán los datos -->
+    <div id="lista-alumnos" class="row justify-content-center"></div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-secondary text-white text-center py-3 mt-5">
+    <p class="mb-0">PIE DE PÁGINA - TP02 Franco Abalos</p>
+  </footer>
+
+  <!-- Librerías -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" 
+          integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" 
+          crossorigin="anonymous"></script>
+
+  <!-- Librería Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    // =========================================
+    // Inicialización del cliente de Supabase
+    // =========================================
+    const SUPABASE_URL = "https://hucidhhlkfibgcirisvv.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh1Y2lkaGhsa2ZpYmdjaXJpc3Z2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA5ODgwNTAsImV4cCI6MjA3NjU2NDA1MH0.7AlWjsKW4PP0Y2jpXQL7MmZOzzbWRD-reX2gmNHTLxY";
+    
+    const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    // =========================================
+    // Función para obtener y mostrar los alumnos
+    // =========================================
+    async function obtenerAlumnos() {
+      try {
+        const { data, error } = await client
+          .from("alumnos")
+          .select("*");
+
+        const contenedor = document.getElementById("lista-alumnos");
+        contenedor.innerHTML = "";
+
+        if (error) {
+          throw error;
+        }
+
+        if (!data || data.length === 0) {
+          contenedor.innerHTML = `<p class="text-danger">No hay alumnos registrados.</p>`;
+          return;
+        }
+
+        // Mostrar cada alumno en una tarjeta de Bootstrap
+        data.forEach(alumno => {
+          const div = document.createElement("div");
+          div.classList.add("col-md-4", "mb-3");
+          div.innerHTML = `
+            <div class="card shadow-sm">
+              <div class="card-body text-start">
+                <h5 class="card-title text-primary">${alumno.nombre}</h5>
+                <p class="card-text mb-1"><strong>ID:</strong> ${alumno.id_alumno}</p>
+                <p class="card-text mb-1"><strong>Edad:</strong> ${alumno.edad ?? "Sin especificar"}</p>
+                <p class="card-text mb-1"><strong>Promedio:</strong> ${alumno.promedio ?? "Sin datos"}</p>
+                <p class="card-text mb-1"><strong>Activo:</strong> ${alumno.activo ? "Sí" : "No"}</p>
+                <p class="card-text"><strong>Fecha de Ingreso:</strong> ${alumno.fecha_ingreso ?? "No registrada"}</p>
+              </div>
+            </div>
+          `;
+          contenedor.appendChild(div);
+        });
+
+      } catch (err) {
+        const contenedor = document.getElementById("lista-alumnos");
+        contenedor.innerHTML = `<p class="text-danger">Error al obtener los datos: ${err.message}</p>`;
+        console.error("Error:", err);
+      }
+    }
+
+    // Ejecutar al cargar la página
+    obtenerAlumnos();
+  </script>
+</body>
+</html>
