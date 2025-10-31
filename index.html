@@ -11,84 +11,92 @@
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
         crossorigin="anonymous">
 </head>
+
 <body class="bg-light">
 
-  <!-- =========================================
-       NAVBAR
-       ========================================= -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-        <img src="https://ifdc6m-juj.infd.edu.ar/sitio/wp-content/uploads/2020/11/Screenshot_1000.png" 
-             alt="Logo IFDC" height="60">
-      </a>
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link active" href="#">Inicio</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Formulario</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Tabla</a></li>
-        </ul>
+  <!-- =====================================================
+       HEADER / NAVBAR
+       ===================================================== -->
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img src="https://ifdc6m-juj.infd.edu.ar/sitio/wp-content/uploads/2020/11/Screenshot_1000.png" 
+               alt="Logo IFDC" height="60">
+        </a>
+        <div class="collapse navbar-collapse">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link active" href="#">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Formulario</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Tabla</a></li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
+  </header>
 
-  <!-- =========================================
-       ENCABEZADO PRINCIPAL
-       ========================================= -->
-  <div class="container text-center mt-5">
+  <!-- =====================================================
+       CONTENIDO PRINCIPAL
+       ===================================================== -->
+  <main class="container text-center mt-5">
     <h1 class="display-4 fw-bold mb-4 text-secondary">Clase de Tutorías</h1>
+
     <img src="https://ifdc6m-juj.infd.edu.ar/sitio/wp-content/uploads/2021/09/WhatsApp-Image-2021-09-24-at-20.26.09-1000x563.jpeg"
          style="width: 60%;" class="img-fluid rounded mb-4" alt="Clase de Tutorías IFDC">
 
-    <!-- =========================================
+    <!-- =====================================================
          SECCIÓN DE VIDEOS
-         ========================================= -->
-    <div class="row justify-content-center">
+         ===================================================== -->
+    <section class="row justify-content-center">
       <div class="col-md-6 mb-4">
         <h2 class="fw-bold mb-3">Videos informativos</h2>
 
         <p class="fw-bold">Supabase, Tutorial Práctico</p>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/pi33WDrgfpI?si=jqv_SqxGxZqCpETr" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                title="Bootstrap Set Up in VS Code" frameborder="0"
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/pi33WDrgfpI?si=jqv_SqxGxZqCpETr"
+                title="YouTube video player" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen></iframe>
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
-    </div>
+    </section>
 
-    <div class="row justify-content-center mt-3">
+    <section class="row justify-content-center mt-3">
       <div class="col-md-6">
-        <p class="fw-bold">Publica RÁPIDO, FÁCIL y ¡GRATIS! TU web (Github y Vercel)</p>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/cyz6UBwAuKs?si=lyVpSr2NQBCXcre_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <p class="fw-bold">Publica RÁPIDO, FÁCIL y ¡GRATIS! tu web (GitHub y Vercel)</p>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/cyz6UBwAuKs?si=lyVpSr2NQBCXcre_"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
-    </div>
+    </section>
 
-    <!-- =========================================
+    <!-- =====================================================
          BOTÓN DE ACCIÓN
-         ========================================= -->
+         ===================================================== -->
     <a href="#" class="btn btn-success btn-lg mt-4">Registrarse</a>
-  </div>
+    <!-- =====================================================
+         SECCIÓN DE LISTADO DE ALUMNOS (Supabase)
+         ===================================================== -->
+    <section class="container mt-5">
+      <h2 class="text-center text-secondary mb-4">Listado de Alumnos (Supabase)</h2>
+      <p class="text-center mb-4">
+        Los datos se cargan automáticamente desde la base de datos Supabase.
+      </p>
 
-  <!-- =========================================
-       SECCIÓN DE LISTADO DE ALUMNOS (Supabase)
-       ========================================= -->
-  <div class="container mt-5">
-    <h2 class="text-center text-secondary mb-4">Listado de Alumnos (Supabase)</h2>
-    <p class="text-center mb-4">Los datos se cargan automáticamente desde la base de datos Supabase.</p>
+      <!-- Contenedor donde se mostrarán los alumnos -->
+      <div id="lista-alumnos" class="row justify-content-center"></div>
+    </section>
+  </main>
 
-    <!-- Contenedor donde se mostrarán los alumnos -->
-    <div id="lista-alumnos" class="row justify-content-center"></div>
-  </div>
-
-  <!-- =========================================
+  <!-- =====================================================
        FOOTER
-       ========================================= -->
+       ===================================================== -->
   <footer class="bg-secondary text-white text-center py-3 mt-5">
     <p class="mb-0">PIE DE PÁGINA - TP03 Franco Abalos</p>
   </footer>
 
-  <!-- =========================================
-       LIBRERÍAS
-       ========================================= -->
+  <!-- =====================================================
+       LIBRERÍAS Y SCRIPT DE SUPABASE
+       ===================================================== -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
           integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
           crossorigin="anonymous"></script>
@@ -96,16 +104,16 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <script>
-    // =========================================
+    // =====================================================
     // Inicialización del cliente de Supabase
-    // =========================================
+    // =====================================================
     const SUPABASE_URL = "https://hucidhhlkfibgcirisvv.supabase.co";
     const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh1Y2lkaGhsa2ZpYmdjaXJpc3Z2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA5ODgwNTAsImV4cCI6MjA3NjU2NDA1MH0.7AlWjsKW4PP0Y2jpXQL7MmZOzzbWRD-reX2gmNHTLxY";
     const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-    // =========================================
+    // =====================================================
     // Función para obtener y mostrar los alumnos
-    // =========================================
+    // =====================================================
     async function obtenerAlumnos() {
       try {
         const { data, error } = await client
@@ -120,7 +128,8 @@
         }
 
         if (!data || data.length === 0) {
-          contenedor.innerHTML = `<p class="text-danger text-center">No hay alumnos registrados.</p>`;
+          contenedor.innerHTML = `
+            <p class="text-danger text-center">No hay alumnos registrados.</p>`;
           return;
         }
 
@@ -136,7 +145,9 @@
                 <p class="card-text mb-1"><strong>Edad:</strong> ${alumno.edad ?? "Sin especificar"}</p>
                 <p class="card-text mb-1"><strong>Promedio:</strong> ${alumno.promedio ?? "Sin datos"}</p>
                 <p class="card-text mb-1"><strong>Activo:</strong> ${alumno.activo ? "Sí" : "No"}</p>
-                <p class="card-text"><strong>Fecha de Ingreso:</strong> ${alumno.fecha_ingreso ?? "No registrada"}</p>
+                <p class="card-text">
+                  <strong>Fecha de Ingreso:</strong> ${alumno.fecha_ingreso ?? "No registrada"}
+                </p>
               </div>
             </div>
           `;
@@ -145,13 +156,17 @@
 
       } catch (err) {
         const contenedor = document.getElementById("lista-alumnos");
-        contenedor.innerHTML = `<p class="text-danger text-center">Error al obtener los datos: ${err.message}</p>`;
+        contenedor.innerHTML = `
+          <p class="text-danger text-center">
+            Error al obtener los datos: ${err.message}
+          </p>`;
         console.error("Error:", err);
       }
     }
 
-    // Ejecutar al cargar la página
+    // Ejecutar la función al cargar la página
     obtenerAlumnos();
   </script>
+
 </body>
 </html>
